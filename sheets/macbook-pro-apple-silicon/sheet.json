@@ -1,0 +1,2037 @@
+{
+  "schemaVersion": 1,
+  "title": "MacBook Pro (Apple silicon)",
+  "description": "Keyboard, trackpad and Magic Mouse on a MacBook Pro with an M-series chip, running macOS Tahoe 26 or later. Checked against Apple's support pages in November 2026.",
+  "sections": [
+    {
+      "id": "text-navigation",
+      "title": "Moving around text",
+      "entries": [
+        {
+          "id": "line-start",
+          "label": "Start of the line",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "←"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Also Control-A, which goes to the line's or paragraph's start."
+            },
+            {
+              "keys": [
+                "⌃",
+                "A"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "line-end",
+          "label": "End of the line",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "→"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Also Control-E, which goes to the line's or paragraph's end."
+            },
+            {
+              "keys": [
+                "⌃",
+                "E"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "word-left",
+          "label": "Previous word",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "←"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "word-right",
+          "label": "Next word",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "→"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "document-start",
+          "label": "Start of the document",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "↑"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "fn-Left Arrow (Home) does the same in many apps."
+            },
+            {
+              "keys": [
+                "fn",
+                "←"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "document-end",
+          "label": "End of the document",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "↓"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "fn-Right Arrow (End) does the same in many apps."
+            },
+            {
+              "keys": [
+                "fn",
+                "→"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page-up",
+          "label": "Page up",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "↑"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page-down",
+          "label": "Page down",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "↓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "selecting-text",
+      "title": "Selecting text",
+      "entries": [
+        {
+          "id": "select-all",
+          "label": "Select everything",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "A"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "select-to-line-start",
+          "label": "Select to the start of the line",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "←"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "select-to-line-end",
+          "label": "Select to the end of the line",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "→"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "select-word-left",
+          "label": "Select the previous word",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⇧",
+                "←"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Press again to extend the selection one more word."
+            }
+          ]
+        },
+        {
+          "id": "select-word-right",
+          "label": "Select the next word",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⇧",
+                "→"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Press again to extend the selection one more word."
+            }
+          ]
+        },
+        {
+          "id": "select-to-document-start",
+          "label": "Select to the start of the document",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "↑"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "select-to-document-end",
+          "label": "Select to the end of the document",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "↓"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "select-by-character",
+          "label": "Extend the selection a character or line at a time",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "←"
+              ]
+            },
+            {
+              "keys": [
+                "⇧",
+                "→"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Shift with Up Arrow or Down Arrow extends it a line at a time."
+            },
+            {
+              "keys": [
+                "⇧",
+                "↑"
+              ]
+            },
+            {
+              "keys": [
+                "⇧",
+                "↓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "editing",
+      "title": "Editing",
+      "entries": [
+        {
+          "id": "copy",
+          "label": "Copy",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "C"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cut",
+          "label": "Cut",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "X"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "paste",
+          "label": "Paste",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "V"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "paste-match-style",
+          "label": "Paste and match the surrounding style",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⇧",
+                "⌘",
+                "V"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "undo",
+          "label": "Undo",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "Z"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "redo",
+          "label": "Redo",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "Z"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "delete-word-left",
+          "label": "Delete the previous word",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "Delete"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "forward-delete",
+          "label": "Delete the character to the right",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "Delete"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Control-D does the same."
+            },
+            {
+              "keys": [
+                "⌃",
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "find",
+          "label": "Find",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "F"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "find-next",
+          "label": "Find the next match",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "G"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Shift-Command-G finds the previous one."
+            },
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "G"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bold",
+          "label": "Bold",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "B"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "italic",
+          "label": "Italic",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "I"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "underline",
+          "label": "Underline",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "U"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "add-link",
+          "label": "Add a web link",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "K"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "emoji",
+          "label": "Emoji and symbols",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⌘",
+                "Space"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "fn-E opens the same Character Viewer."
+            },
+            {
+              "keys": [
+                "fn",
+                "E"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dictation",
+          "label": "Start or stop dictation",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "D"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "You can change this shortcut in Keyboard settings."
+            }
+          ]
+        },
+        {
+          "id": "define-word",
+          "label": "Look up the selected word",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⌘",
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "spelling",
+          "label": "Find misspelt words",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                ";"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "documents",
+      "title": "Files and documents",
+      "entries": [
+        {
+          "id": "save",
+          "label": "Save",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "S"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "save-as",
+          "label": "Duplicate, or Save As",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "S"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "open",
+          "label": "Open a file",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "O"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "print",
+          "label": "Print",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "close-window",
+          "label": "Close the window",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "W"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Add Option to close every window of the app."
+            },
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "W"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "app-settings",
+          "label": "Settings for the app you're using",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                ","
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apps",
+      "title": "Launching and switching apps",
+      "entries": [
+        {
+          "id": "spotlight",
+          "label": "Open an app, file or anything else with Spotlight",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "Space"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Type the name, then press Return. Space bar previews the selected result."
+            },
+            {
+              "tags": [
+                "search",
+                "launch"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "apps",
+          "label": "Show all your apps",
+          "alt": [
+            "Launchpad"
+          ],
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⇧",
+                "A"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "This replaced Launchpad in macOS Tahoe 26. Trackpad: pinch thumb and three fingers in."
+            }
+          ]
+        },
+        {
+          "id": "switch-apps",
+          "label": "Switch between open apps",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "Tab"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Keep holding Command and press Tab again to go further back through recently used apps."
+            }
+          ]
+        },
+        {
+          "id": "switch-windows",
+          "label": "Switch between windows of the same app",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "`"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Shift-Command-` goes the other way. The ` key moves with the layout: left of Z on a British keyboard, left of 1 on a US one."
+            },
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "`"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quit",
+          "label": "Quit the app",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "Q"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "force-quit",
+          "label": "Force quit an app",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "Esc"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hide-app",
+          "label": "Hide the app",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "H"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hide-others",
+          "label": "Hide all other apps",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "H"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "minimise",
+          "label": "Minimise to the Dock",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "M"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Add Option to minimise every window of the app."
+            },
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "M"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "full-screen",
+          "label": "Full screen on or off",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⌘",
+                "F"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dock",
+          "label": "Show or hide the Dock",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "D"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "fn-A does the same."
+            },
+            {
+              "keys": [
+                "fn",
+                "A"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-centre",
+          "label": "Control Centre",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "C"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "notification-centre",
+          "label": "Notification Centre",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "N"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quick-note",
+          "label": "Quick Note",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "Q"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "windows",
+      "title": "Mission Control and desktops",
+      "entries": [
+        {
+          "id": "mission-control",
+          "label": "Mission Control",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "↑"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Trackpad: four-finger swipe up. Magic Mouse: two-finger double-tap."
+            }
+          ]
+        },
+        {
+          "id": "app-windows",
+          "label": "Show every window of the current app",
+          "alt": [
+            "App Exposé"
+          ],
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "↓"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Trackpad: four-finger swipe down."
+            }
+          ]
+        },
+        {
+          "id": "show-desktop",
+          "label": "Show the desktop",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "H"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Trackpad: spread thumb and three fingers out."
+            }
+          ]
+        },
+        {
+          "id": "next-desktop",
+          "label": "Switch desktop or full-screen app",
+          "alt": [
+            "Spaces"
+          ],
+          "answer": [
+            {
+              "text": "Four-finger swipe, left or right"
+            }
+          ],
+          "detail": [
+            {
+              "text": "Magic Mouse: two-finger swipe, left or right."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiling",
+      "title": "Arranging windows",
+      "entries": [
+        {
+          "id": "tile-fill",
+          "label": "Fill the screen with the window",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "F"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Not full screen: the menu bar and Dock stay. Window > Move & Resize lists every arrangement."
+            }
+          ]
+        },
+        {
+          "id": "tile-centre",
+          "label": "Centre the window",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "C"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-left",
+          "label": "Window to the left half",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "←"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-right",
+          "label": "Window to the right half",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "→"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-top",
+          "label": "Window to the top half",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "↑"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-bottom",
+          "label": "Window to the bottom half",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "↓"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-restore",
+          "label": "Return the window to its size before tiling",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "R"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-two-side-by-side",
+          "label": "Two windows side by side",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "⇧",
+                "←"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Arranges the window you're using and the one behind it. fn-Control-Shift-Right Arrow puts them the other way round."
+            },
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "⇧",
+                "→"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tile-two-stacked",
+          "label": "Two windows one above the other",
+          "answer": [
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "⇧",
+                "↑"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "fn-Control-Shift-Down Arrow puts them the other way round."
+            },
+            {
+              "keys": [
+                "fn",
+                "⌃",
+                "⇧",
+                "↓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trackpad",
+      "title": "Trackpad",
+      "entries": [
+        {
+          "id": "trackpad-tap",
+          "label": "Click",
+          "answer": [
+            {
+              "text": "One-finger tap"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-right-click",
+          "label": "Right-click",
+          "alt": [
+            "Secondary click"
+          ],
+          "answer": [
+            {
+              "text": "Two-finger click or tap"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-scroll",
+          "label": "Scroll",
+          "answer": [
+            {
+              "text": "Drag two fingers up or down"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-three-finger-drag",
+          "label": "Drag with three fingers",
+          "answer": [
+            {
+              "text": "Three fingers on the item, move it, then click or tap to let go"
+            }
+          ],
+          "detail": [
+            {
+              "text": "Turn it on in System Settings > Accessibility. Gestures can be changed or turned off in System Settings > Trackpad."
+            }
+          ]
+        },
+        {
+          "id": "trackpad-zoom",
+          "label": "Zoom in or out",
+          "answer": [
+            {
+              "text": "Two fingers, pinched in or spread out"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-smart-zoom",
+          "label": "Quick zoom into a webpage or PDF, and out again",
+          "alt": [
+            "Smart zoom"
+          ],
+          "answer": [
+            {
+              "text": "Two-finger double-tap"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-rotate",
+          "label": "Rotate a photo or other item",
+          "answer": [
+            {
+              "text": "Turn two fingers in a circle"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-look-up",
+          "label": "Look up a word, or act on a date or address",
+          "answer": [
+            {
+              "text": "Three-finger tap"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-pages",
+          "label": "Previous or next page",
+          "answer": [
+            {
+              "text": "Two-finger swipe, left or right"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-mission-control",
+          "label": "Mission Control",
+          "answer": [
+            {
+              "text": "Four-finger swipe up"
+            }
+          ],
+          "detail": [
+            {
+              "text": "Some setups use three fingers for this and the other swipes. System Settings > Trackpad shows which."
+            }
+          ]
+        },
+        {
+          "id": "trackpad-app-windows",
+          "label": "Every window of the current app",
+          "answer": [
+            {
+              "text": "Four-finger swipe down"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-desktops",
+          "label": "Switch desktop or full-screen app",
+          "answer": [
+            {
+              "text": "Four-finger swipe, left or right"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-apps",
+          "label": "Show all your apps",
+          "answer": [
+            {
+              "text": "Pinch thumb and three fingers in"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-desktop",
+          "label": "Show the desktop",
+          "answer": [
+            {
+              "text": "Spread thumb and three fingers out"
+            }
+          ]
+        },
+        {
+          "id": "trackpad-notifications",
+          "label": "Notification Centre",
+          "answer": [
+            {
+              "text": "From the right edge, swipe two fingers leftwards"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magic-mouse",
+      "title": "Magic Mouse",
+      "entries": [
+        {
+          "id": "mouse-scroll",
+          "label": "Scroll",
+          "answer": [
+            {
+              "text": "Drag one finger up or down"
+            }
+          ]
+        },
+        {
+          "id": "mouse-pages",
+          "label": "Previous or next page",
+          "answer": [
+            {
+              "text": "One-finger swipe, left or right"
+            }
+          ]
+        },
+        {
+          "id": "mouse-right-click",
+          "label": "Right-click",
+          "alt": [
+            "Secondary click"
+          ],
+          "answer": [
+            {
+              "text": "Press on the right-hand side"
+            }
+          ]
+        },
+        {
+          "id": "mouse-mission-control",
+          "label": "Mission Control",
+          "answer": [
+            {
+              "text": "Two-finger double-tap"
+            }
+          ]
+        },
+        {
+          "id": "mouse-desktops",
+          "label": "Switch desktop or full-screen app",
+          "answer": [
+            {
+              "text": "Two-finger swipe, left or right"
+            }
+          ],
+          "detail": [
+            {
+              "text": "Gestures can be changed or turned off in System Settings > Mouse."
+            }
+          ]
+        },
+        {
+          "id": "mouse-smart-zoom",
+          "label": "Quick zoom into a webpage or PDF, and out again",
+          "alt": [
+            "Smart zoom"
+          ],
+          "answer": [
+            {
+              "text": "One-finger double-tap"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screenshots",
+      "title": "Screenshots and recording",
+      "entries": [
+        {
+          "id": "screenshot-screen",
+          "label": "Screenshot of the whole screen",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "screenshot-area",
+          "label": "Screenshot of part of the screen",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "4"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Drag to select. Hold Space bar while dragging to move the selection. Esc cancels."
+            }
+          ]
+        },
+        {
+          "id": "screenshot-window",
+          "label": "Screenshot of a window",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "4"
+              ]
+            },
+            {
+              "text": "then Space bar, then click the window"
+            }
+          ],
+          "detail": [
+            {
+              "text": "Hold Option while clicking to leave out the window's shadow."
+            }
+          ]
+        },
+        {
+          "id": "screenshot-clipboard",
+          "label": "Screenshot to the clipboard instead of a file",
+          "answer": [
+            {
+              "text": "Add Control, such as"
+            },
+            {
+              "keys": [
+                "⌃",
+                "⇧",
+                "⌘",
+                "4"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "screenshot-toolbar",
+          "label": "Screenshot and screen recording toolbar",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "5"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stop-recording",
+          "label": "Stop a screen recording",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⌘",
+                "Esc"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Or click the Stop button in the menu bar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finder",
+      "title": "Finder",
+      "entries": [
+        {
+          "id": "quick-look",
+          "label": "Preview the selected file",
+          "alt": [
+            "Quick Look"
+          ],
+          "answer": [
+            {
+              "keys": [
+                "Space"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "new-finder-window",
+          "label": "New Finder window",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "N"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "new-folder",
+          "label": "New folder",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "N"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "get-info",
+          "label": "Get Info",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "I"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "duplicate",
+          "label": "Duplicate the selected files",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "trash",
+          "label": "Move to the Bin",
+          "alt": [
+            "Trash"
+          ],
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "Delete"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty-trash",
+          "label": "Empty the Bin",
+          "alt": [
+            "Empty Trash"
+          ],
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "Delete"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Add Option to empty it without asking first."
+            },
+            {
+              "keys": [
+                "⌥",
+                "⇧",
+                "⌘",
+                "Delete"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "open-item",
+          "label": "Open the selected item",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "↓"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "enclosing-folder",
+          "label": "Go up to the enclosing folder",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "↑"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "back-forward",
+          "label": "Previous or next folder",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "["
+              ]
+            },
+            {
+              "keys": [
+                "⌘",
+                "]"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "go-to-folder",
+          "label": "Go to a folder by its path",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "G"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "home-folder",
+          "label": "Home folder",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "H"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "desktop-folder",
+          "label": "Desktop folder",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "documents-folder",
+          "label": "Documents folder",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "O"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "downloads-folder",
+          "label": "Downloads folder",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "L"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "airdrop",
+          "label": "AirDrop",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "R"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "finder-views",
+          "label": "Icon, list, column or gallery view",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "1"
+              ]
+            },
+            {
+              "keys": [
+                "⌘",
+                "2"
+              ]
+            },
+            {
+              "keys": [
+                "⌘",
+                "3"
+              ]
+            },
+            {
+              "keys": [
+                "⌘",
+                "4"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "path-bar",
+          "label": "Show or hide the path bar",
+          "answer": [
+            {
+              "keys": [
+                "⌥",
+                "⌘",
+                "P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "show-original",
+          "label": "Show the original of an alias",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "R"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eject",
+          "label": "Eject the selected disk",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "E"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "safari",
+      "title": "Safari",
+      "entries": [
+        {
+          "id": "safari-address",
+          "label": "Go to the address and search field",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "L"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-close-tab",
+          "label": "Close the tab",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "W"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-reopen-tab",
+          "label": "Reopen the last tab or window you closed",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "T"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-next-tab",
+          "label": "Next tab",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "Tab"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Shift-Command-] does the same."
+            },
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "]"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-previous-tab",
+          "label": "Previous tab",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⇧",
+                "Tab"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Shift-Command-[ does the same."
+            },
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "["
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-tab-number",
+          "label": "Go to one of the first eight tabs",
+          "answer": [
+            {
+              "text": "Command-1 to Command-8"
+            }
+          ],
+          "detail": [
+            {
+              "text": "Command-9 goes to the last tab."
+            }
+          ]
+        },
+        {
+          "id": "safari-back",
+          "label": "Back",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "["
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-forward",
+          "label": "Forward",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "]"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-zoom",
+          "label": "Zoom in or out",
+          "answer": [
+            {
+              "keys": [
+                "⌘",
+                "+"
+              ]
+            },
+            {
+              "keys": [
+                "⌘",
+                "-"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-new-tab-link",
+          "label": "Open a link in a new tab",
+          "answer": [
+            {
+              "text": "Command-click the link"
+            }
+          ]
+        },
+        {
+          "id": "safari-tab-overview",
+          "label": "Show all tabs",
+          "alt": [
+            "Tab overview"
+          ],
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "\\"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-bookmarks",
+          "label": "Show or hide bookmarks",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⌘",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safari-reader",
+          "label": "Reader",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "R"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Esc closes it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "power",
+      "title": "Locking and power",
+      "entries": [
+        {
+          "id": "lock",
+          "label": "Lock the screen",
+          "answer": [
+            {
+              "keys": [
+                "⌃",
+                "⌘",
+                "Q"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Pressing the Touch ID button also locks the screen."
+            }
+          ]
+        },
+        {
+          "id": "log-out",
+          "label": "Log out",
+          "answer": [
+            {
+              "keys": [
+                "⇧",
+                "⌘",
+                "Q"
+              ]
+            }
+          ],
+          "detail": [
+            {
+              "text": "Add Option to log out without asking first."
+            },
+            {
+              "keys": [
+                "⌥",
+                "⇧",
+                "⌘",
+                "Q"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "force-off",
+          "label": "Turn off a Mac that won't respond",
+          "answer": [
+            {
+              "text": "Press and hold the Touch ID button"
+            }
+          ]
+        },
+        {
+          "id": "startup-options",
+          "label": "Start up in macOS Recovery or safe mode",
+          "answer": [
+            {
+              "text": "Hold the Touch ID button while starting up"
+            }
+          ],
+          "detail": [
+            {
+              "steps": [
+                "Press and keep holding the Touch ID button as the Mac starts.",
+                "Let go when the startup options appear.",
+                "Choose Options for macOS Recovery, or a disk."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

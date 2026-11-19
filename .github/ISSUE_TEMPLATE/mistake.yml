@@ -1,0 +1,30 @@
+name: Report a mistake
+description: Something in a library sheet is wrong, out of date or missing.
+labels: ["mistake"]
+body:
+  - type: input
+    id: sheet
+    attributes:
+      label: Sheet
+      description: Its title or ID, such as "Capital Cities & Flags".
+    validations:
+      required: true
+  - type: input
+    id: entry
+    attributes:
+      label: Entry
+      description: The entry's label, such as "Australia". Leave it blank if something is missing.
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What's wrong
+      description: What the sheet says, and what it should say.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Where it can be checked
+      description: A reliable source for the right answer, such as official documentation.
+    validations:
+      required: true

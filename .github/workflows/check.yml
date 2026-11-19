@@ -1,0 +1,25 @@
+name: Check
+
+# Checks every sheet on every push and pull request, with the website's own
+# validator, downloaded from the live site.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check the sheets
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Get the website's validator
+        run: curl --fail --silent --show-error --location --output validate.mjs https://my-cheatsheets.com/validate.mjs
+      - run: node --test "scripts/*.test.mjs"
+      - run: node scripts/check.mjs

@@ -1,0 +1,24 @@
+name: Suggest a sheet
+description: A sheet you'd like added to the library.
+labels: ["suggestion"]
+body:
+  - type: input
+    id: subject
+    attributes:
+      label: Subject
+      description: What the sheet should cover, such as "Knots for sailing".
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Who it's for
+      description: Who would use it, and what they'd look up.
+    validations:
+      required: true
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Writing it
+      options:
+        - label: I'd like to write it myself, with a pull request.

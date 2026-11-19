@@ -1,0 +1,2 @@
+# Keep each sheet byte for byte as committed, so its published hash matches on every computer.
+sheets/**/*.json -text

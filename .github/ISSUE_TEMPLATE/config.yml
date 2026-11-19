@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help with the website or the app
+    url: mailto:support@my-cheatsheets.com
+    about: For anything other than the library's sheets, email support.

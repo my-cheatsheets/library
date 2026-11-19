@@ -90,7 +90,7 @@
           ],
           "detail": [
             {
-              "text": "fn-Left Arrow (Home) does the same in many apps."
+              "text": "fn-Left Arrow (Home) scrolls to the start, but may not move the insertion point."
             },
             {
               "keys": [
@@ -113,7 +113,7 @@
           ],
           "detail": [
             {
-              "text": "fn-Right Arrow (End) does the same in many apps."
+              "text": "fn-Right Arrow (End) scrolls to the end, but may not move the insertion point."
             },
             {
               "keys": [
@@ -525,7 +525,7 @@
           ],
           "detail": [
             {
-              "text": "You can change this shortcut in Keyboard settings."
+              "text": "The microphone key (F5) also starts it. You can change that shortcut in Keyboard settings."
             }
           ]
         },
@@ -1974,7 +1974,7 @@
           ],
           "detail": [
             {
-              "text": "Pressing the Touch ID button also locks the screen."
+              "text": "Pressing the power button (Touch ID) also locks the screen."
             }
           ]
         },
@@ -2009,7 +2009,7 @@
           "label": "Turn off a Mac that won't respond",
           "answer": [
             {
-              "text": "Press and hold the Touch ID button"
+              "text": "Press and hold the power button (Touch ID)"
             }
           ]
         },
@@ -2018,13 +2018,13 @@
           "label": "Start up in macOS Recovery or safe mode",
           "answer": [
             {
-              "text": "Hold the Touch ID button while starting up"
+              "text": "Hold the power button (Touch ID) while starting up"
             }
           ],
           "detail": [
             {
               "steps": [
-                "Press and keep holding the Touch ID button as the Mac starts.",
+                "Press and keep holding the power button as the Mac starts.",
                 "Let go when the startup options appear.",
                 "Choose Options for macOS Recovery, or a disk."
               ]

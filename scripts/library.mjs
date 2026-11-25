@@ -136,6 +136,20 @@ export function sha256(data) {
 }
 
 /**
+ * A sheet's version file: its licence, its credits and the sheet itself, as
+ * JSON with no spaces. `raw` is sheet.json's bytes. The website works this out
+ * again from the index and the sheet, so it must stay exactly as it is.
+ */
+export function versionFile(raw, about) {
+  return JSON.stringify({ licence: about.licence, credits: about.credits, sheet: JSON.parse(raw.toString("utf8")) });
+}
+
+/** A sheet's version: the SHA-256 of its version file. A change to the sheet, its licence or its credits changes it. */
+export function versionOf(raw, about) {
+  return sha256(versionFile(raw, about));
+}
+
+/**
  * The index for checked sheets, as spec 18's "The published folder" says.
  * `libraryHash` is the SHA-256 of the sheets list as JSON with no spaces, so
  * a change to any sheet, licence or credit changes it.
@@ -153,23 +167,32 @@ export function buildIndex(sheets) {
       images: sheet.images?.length ?? 0,
       bytes: raw.length,
       sha256: sha256(raw),
+      version: versionOf(raw, about),
       licence: about.licence,
       credits: about.credits
     }));
   return { libraryHash: sha256(JSON.stringify(list)), sheets: list };
 }
 
-/** Writes the published folder to `out`, replacing anything there: the index, and each sheet byte for byte. */
-export function writePublished(out, sheets) {
+/**
+ * Writes the published folder to `out`, replacing anything there: the index,
+ * each sheet byte for byte, and a file for each version. `versions` holds the
+ * version files of the past, by version. The sheets' own are always written.
+ */
+export function writePublished(out, sheets, versions = new Map()) {
   const index = buildIndex(sheets);
   rmSync(out, { recursive: true, force: true });
   mkdirSync(join(out, LAYOUT, "sheets"), { recursive: true });
   writeFileSync(join(out, LAYOUT, "index.json"), JSON.stringify(index, null, 2) + "\n");
   for (const { id, raw } of sheets) writeFileSync(join(out, LAYOUT, "sheets", `${id}.json`), raw);
+  mkdirSync(join(out, LAYOUT, "versions"));
+  const current = sheets.map(({ raw, about }) => versionFile(raw, about));
+  const all = new Map([...versions, ...current.map((text) => [sha256(text), text])]);
+  for (const [version, text] of all) writeFileSync(join(out, LAYOUT, "versions", `${version}.json`), text);
   return index;
 }
 
-function isObject(value) {
+export function isObject(value) {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 

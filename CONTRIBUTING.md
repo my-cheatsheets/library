@@ -34,7 +34,8 @@ Open an issue saying what it should cover, and who it's for. A sheet that covers
    ```
 
    It needs Node.js 24 or later. Or paste the sheet into the website's import page, which uses the same validator. The checks run again on your pull request.
-6. **Open a pull request**, and fill in its checklist.
+6. **If you're changing a sheet, keep its IDs.** People's copies are updated by matching sections and entries by ID, so change an entry's wording, not its `id`. A new `id` looks like one entry deleted and another added.
+7. **Open a pull request**, and fill in its checklist.
 
 ## What makes a good library sheet
 
@@ -45,3 +46,7 @@ Open an issue saying what it should cover, and who it's for. A sheet that covers
 - **Useful.** The things people really look up, grouped so they're easy to find.
 
 Sheets about a company's products are welcome, using the product's name only to say what the sheet covers.
+
+## For maintainers
+
+**Never rewrite `main`.** Every version a sheet has had is published from `main`'s history, and the website needs the one a copy was made from to update it. A force push or a rewritten history loses versions. To take something back, commit its removal, knowing that the old version stays published.

@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { buildIndex, LAYOUT, writePublished } from "./library.mjs";
+import { buildIndex, LAYOUT, versionFile, versionOf, writePublished } from "./library.mjs";
 
 const hash = (data) => createHash("sha256").update(data).digest("hex");
 
@@ -43,6 +43,7 @@ describe("buildIndex", () => {
         images: 1,
         bytes: one.raw.length,
         sha256: hash(one.raw),
+        version: hash(JSON.stringify({ licence: "CC-BY-4.0", credits: [{ text: "Me" }], sheet: one.sheet })),
         licence: "CC-BY-4.0",
         credits: [{ text: "Me" }]
       }
@@ -82,6 +83,36 @@ describe("buildIndex", () => {
   });
 });
 
+describe("versionFile", () => {
+  const about = { licence: "CC-BY-4.0", credits: [{ text: "Me", url: "https://example.com" }] };
+  const raw = (text) => Buffer.from(text, "utf8");
+
+  it("holds the licence, the credits and the sheet, as JSON with no spaces", () => {
+    assert.equal(
+      versionFile(raw('{ "title": "Côte d\'Ivoire",\n  "schemaVersion": 1 }'), about),
+      '{"licence":"CC-BY-4.0","credits":[{"text":"Me","url":"https://example.com"}],"sheet":{"title":"Côte d\'Ivoire","schemaVersion":1}}'
+    );
+  });
+
+  it("is the same whatever order about.json lists its fields in", () => {
+    assert.equal(versionFile(raw("{}"), { credits: about.credits, licence: about.licence }), versionFile(raw("{}"), about));
+  });
+
+  it("has a version that's its SHA-256, in hex", () => {
+    const text = versionFile(raw('{"title":"Côte d\'Ivoire"}'), about);
+    assert.equal(versionOf(raw('{"title":"Côte d\'Ivoire"}'), about), hash(Buffer.from(text, "utf8")));
+    assert.match(versionOf(raw("{}"), about), /^[0-9a-f]{64}$/);
+  });
+
+  it("has another version when the sheet, its licence or its credits change, but not its spacing", () => {
+    const base = versionOf(raw('{"title":"A"}'), about);
+    assert.notEqual(versionOf(raw('{"title":"B"}'), about), base);
+    assert.notEqual(versionOf(raw('{"title":"A"}'), { ...about, licence: "CC0-1.0" }), base);
+    assert.notEqual(versionOf(raw('{"title":"A"}'), { ...about, credits: [] }), base);
+    assert.equal(versionOf(raw('{\n  "title": "A"\n}\n'), about), base);
+  });
+});
+
 describe("writePublished", () => {
   it("writes the index and each sheet byte for byte, under the layout's version", () => {
     const out = mkdtempSync(join(tmpdir(), "published-"));
@@ -93,11 +124,22 @@ describe("writePublished", () => {
     assert.deepEqual(readdirSync(out), ["v1"]);
     assert.deepEqual(JSON.parse(readFileSync(join(out, "v1", "index.json"), "utf8")), index);
     assert.deepEqual(readdirSync(join(out, "v1", "sheets")).sort(), ["bends.json", "knots.json"]);
+    assert.deepEqual(readdirSync(join(out, "v1", "versions")).sort(), index.sheets.map((s) => `${s.version}.json`).sort());
     for (const one of sheets) {
       const written = readFileSync(join(out, "v1", "sheets", `${one.id}.json`));
       assert.ok(written.equals(one.raw));
       assert.equal(hash(written), index.sheets.find((s) => s.id === one.id).sha256);
     }
+  });
+
+  it("writes the versions it's given, beside the sheets' own, each under its own SHA-256", () => {
+    const out = mkdtempSync(join(tmpdir(), "published-"));
+    folders.push(out);
+    const old = versionFile(sheet("knots", { description: "Old." }).raw, { licence: "CC-BY-4.0", credits: [] });
+    const index = writePublished(out, [sheet("knots")], new Map([[hash(old), old]]));
+    const names = readdirSync(join(out, "v1", "versions"));
+    assert.deepEqual(names.sort(), [`${hash(old)}.json`, `${index.sheets[0].version}.json`].sort());
+    for (const name of names) assert.equal(`${hash(readFileSync(join(out, "v1", "versions", name)))}.json`, name);
   });
 
   it("replaces anything already in the folder", () => {

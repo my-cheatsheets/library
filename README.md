@@ -25,4 +25,4 @@ Each sheet is under the licence its `about.json` names: [CC BY 4.0](LICENSES/CC-
 
 ## How it's published
 
-Each change to `main` is checked, then published to `https://library.my-cheatsheets.com/v1/`: an `index.json` listing every sheet, and the sheets themselves. The website picks up changes by the next morning.
+Each change to `main` is checked, then published to `https://library.my-cheatsheets.com/v1/`: an `index.json` listing every sheet, the sheets themselves, and every version each has had, from `main`'s history. The website picks up changes by the next morning.

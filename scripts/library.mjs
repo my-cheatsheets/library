@@ -136,6 +136,20 @@ export function sha256(data) {
 }
 
 /**
+ * A sheet's version file: its licence, its credits and the sheet itself, as
+ * JSON with no spaces. `raw` is sheet.json's bytes. The website works this out
+ * again from the index and the sheet, so it must stay exactly as it is.
+ */
+export function versionFile(raw, about) {
+  return JSON.stringify({ licence: about.licence, credits: about.credits, sheet: JSON.parse(raw.toString("utf8")) });
+}
+
+/** A sheet's version: the SHA-256 of its version file. A change to the sheet, its licence or its credits changes it. */
+export function versionOf(raw, about) {
+  return sha256(versionFile(raw, about));
+}
+
+/**
  * The index for checked sheets, as spec 18's "The published folder" says.
  * `libraryHash` is the SHA-256 of the sheets list as JSON with no spaces, so
  * a change to any sheet, licence or credit changes it.
@@ -153,6 +167,7 @@ export function buildIndex(sheets) {
       images: sheet.images?.length ?? 0,
       bytes: raw.length,
       sha256: sha256(raw),
+      version: versionOf(raw, about),
       licence: about.licence,
       credits: about.credits
     }));

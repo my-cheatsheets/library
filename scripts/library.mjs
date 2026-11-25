@@ -174,17 +174,25 @@ export function buildIndex(sheets) {
   return { libraryHash: sha256(JSON.stringify(list)), sheets: list };
 }
 
-/** Writes the published folder to `out`, replacing anything there: the index, and each sheet byte for byte. */
-export function writePublished(out, sheets) {
+/**
+ * Writes the published folder to `out`, replacing anything there: the index,
+ * each sheet byte for byte, and a file for each version. `versions` holds the
+ * version files of the past, by version. The sheets' own are always written.
+ */
+export function writePublished(out, sheets, versions = new Map()) {
   const index = buildIndex(sheets);
   rmSync(out, { recursive: true, force: true });
   mkdirSync(join(out, LAYOUT, "sheets"), { recursive: true });
   writeFileSync(join(out, LAYOUT, "index.json"), JSON.stringify(index, null, 2) + "\n");
   for (const { id, raw } of sheets) writeFileSync(join(out, LAYOUT, "sheets", `${id}.json`), raw);
+  mkdirSync(join(out, LAYOUT, "versions"));
+  const current = sheets.map(({ raw, about }) => versionFile(raw, about));
+  const all = new Map([...versions, ...current.map((text) => [sha256(text), text])]);
+  for (const [version, text] of all) writeFileSync(join(out, LAYOUT, "versions", `${version}.json`), text);
   return index;
 }
 
-function isObject(value) {
+export function isObject(value) {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 

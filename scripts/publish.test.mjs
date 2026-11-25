@@ -124,11 +124,22 @@ describe("writePublished", () => {
     assert.deepEqual(readdirSync(out), ["v1"]);
     assert.deepEqual(JSON.parse(readFileSync(join(out, "v1", "index.json"), "utf8")), index);
     assert.deepEqual(readdirSync(join(out, "v1", "sheets")).sort(), ["bends.json", "knots.json"]);
+    assert.deepEqual(readdirSync(join(out, "v1", "versions")).sort(), index.sheets.map((s) => `${s.version}.json`).sort());
     for (const one of sheets) {
       const written = readFileSync(join(out, "v1", "sheets", `${one.id}.json`));
       assert.ok(written.equals(one.raw));
       assert.equal(hash(written), index.sheets.find((s) => s.id === one.id).sha256);
     }
+  });
+
+  it("writes the versions it's given, beside the sheets' own, each under its own SHA-256", () => {
+    const out = mkdtempSync(join(tmpdir(), "published-"));
+    folders.push(out);
+    const old = versionFile(sheet("knots", { description: "Old." }).raw, { licence: "CC-BY-4.0", credits: [] });
+    const index = writePublished(out, [sheet("knots")], new Map([[hash(old), old]]));
+    const names = readdirSync(join(out, "v1", "versions"));
+    assert.deepEqual(names.sort(), [`${hash(old)}.json`, `${index.sheets[0].version}.json`].sort());
+    for (const name of names) assert.equal(`${hash(readFileSync(join(out, "v1", "versions", name)))}.json`, name);
   });
 
   it("replaces anything already in the folder", () => {

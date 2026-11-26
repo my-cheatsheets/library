@@ -20,7 +20,7 @@
           ],
           "detail": [
             {
-              "text": "Also Control-A, which goes to the line's or paragraph's start."
+              "text": "Control-A also works. In some apps it goes to the start of the paragraph instead."
             },
             {
               "keys": [
@@ -43,7 +43,7 @@
           ],
           "detail": [
             {
-              "text": "Also Control-E, which goes to the line's or paragraph's end."
+              "text": "Control-E also works. In some apps it goes to the end of the paragraph instead."
             },
             {
               "keys": [

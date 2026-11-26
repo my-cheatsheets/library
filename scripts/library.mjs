@@ -208,7 +208,8 @@ export function versionOf(raw, about) {
 /**
  * The index for checked sheets, as spec 18's "The published folder" says.
  * `libraryHash` is the SHA-256 of the sheets list as JSON with no spaces, so
- * a change to any sheet, licence or credit changes it.
+ * a change to any sheet, group, licence or credit changes it. The group isn't
+ * in the version, so moving a sheet doesn't make anyone's copy out of date.
  */
 export function buildIndex(sheets) {
   const list = [...sheets]
@@ -224,6 +225,7 @@ export function buildIndex(sheets) {
       bytes: raw.length,
       sha256: sha256(raw),
       version: versionOf(raw, about),
+      group: about.group,
       licence: about.licence,
       credits: about.credits
     }));

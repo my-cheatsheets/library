@@ -7,7 +7,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { checkAbout, checkLibrary, LICENCES } from "./library.mjs";
+import { checkAbout, checkGroups, checkLibrary, LICENCES } from "./library.mjs";
 
 /** Accepts any JSON object with a title. Refuses others, with a described error. */
 const validator = {
@@ -30,12 +30,16 @@ const validator = {
 const roots = [];
 after(() => roots.forEach((root) => rmSync(root, { recursive: true, force: true })));
 
-/** Makes a library folder from { "sheets/id/file": text }. */
+/**
+ * Makes a library folder from { "sheets/id/file": text }, with a groups.json
+ * holding Hobbies and Geography unless files has its own. A null text leaves the file out.
+ */
 function library(files) {
   const root = mkdtempSync(join(tmpdir(), "library-"));
   roots.push(root);
   mkdirSync(join(root, "sheets"));
-  for (const [path, text] of Object.entries(files)) {
+  for (const [path, text] of Object.entries({ "groups.json": goodGroups, ...files })) {
+    if (text === null) continue;
     mkdirSync(join(root, path, ".."), { recursive: true });
     writeFileSync(join(root, path), text);
   }
@@ -43,7 +47,9 @@ function library(files) {
 }
 
 const goodSheet = JSON.stringify({ title: "Knots" });
-const goodAbout = JSON.stringify({ licence: "CC-BY-4.0", credits: [] });
+const goodGroups = JSON.stringify(["Hobbies", "Geography"]);
+const goodAbout = JSON.stringify({ group: "Hobbies", licence: "CC-BY-4.0", credits: [] });
+const aboutIn = (group) => JSON.stringify({ group, licence: "CC-BY-4.0", credits: [] });
 const good = (id) => ({ [`sheets/${id}/sheet.json`]: goodSheet, [`sheets/${id}/about.json`]: goodAbout });
 
 describe("checkLibrary", () => {
@@ -53,7 +59,36 @@ describe("checkLibrary", () => {
     assert.deepEqual(sheets.map((s) => s.id), ["bends", "knots"]);
     assert.equal(sheets[0].raw.toString("utf8"), goodSheet);
     assert.deepEqual(sheets[0].sheet, { title: "Knots" });
-    assert.deepEqual(sheets[0].about, { licence: "CC-BY-4.0", credits: [] });
+    assert.deepEqual(sheets[0].about, { group: "Hobbies", licence: "CC-BY-4.0", credits: [] });
+  });
+
+  it("refuses a sheet with no group, an empty one, or one not in groups.json", () => {
+    const names = "Use one of the names in groups.json: Hobbies, Geography.";
+    const check = (about) => checkLibrary(library({ ...good("knots"), "sheets/knots/about.json": about }), validator);
+    const missing = check(JSON.stringify({ licence: "CC-BY-4.0", credits: [] }));
+    assert.deepEqual(missing.problems, [`sheets/knots/about.json: the group is missing. ${names}`]);
+    assert.equal(missing.sheets.length, 0);
+    for (const group of ["", "  ", 3]) {
+      assert.deepEqual(check(aboutIn(group)).problems, [`sheets/knots/about.json: the group must be a name with something in it. ${names}`]);
+    }
+    assert.deepEqual(check(aboutIn("hobbies")).problems, [
+      `sheets/knots/about.json: the group "hobbies" isn't in groups.json. ${names} A sheet that needs a new group adds it there.`
+    ]);
+  });
+
+  it("accepts each group in groups.json", () => {
+    const { problems } = checkLibrary(library({ ...good("knots"), ...good("flags"), "sheets/flags/about.json": aboutIn("Geography") }), validator);
+    assert.deepEqual(problems, []);
+  });
+
+  it("refuses a library with no groups.json, or a bad one, and still checks each sheet has a group", () => {
+    const missing = checkLibrary(library({ ...good("knots"), "groups.json": null }), validator);
+    assert.deepEqual(missing.problems, ["groups.json is missing. It lists the library's groups."]);
+    const bad = checkLibrary(library({ ...good("knots"), "groups.json": "{}", "sheets/knots/about.json": aboutIn("") }), validator);
+    assert.deepEqual(bad.problems, [
+      'groups.json: must be a list of group names, such as ["Computing", "Geography"].',
+      "sheets/knots/about.json: the group must be a name with something in it."
+    ]);
   });
 
   it("ignores hidden files, such as .DS_Store", () => {
@@ -96,8 +131,30 @@ describe("checkLibrary", () => {
   it("refuses a library with no sheets folder, or no sheets", () => {
     const root = mkdtempSync(join(tmpdir(), "library-"));
     roots.push(root);
+    writeFileSync(join(root, "groups.json"), goodGroups);
     assert.deepEqual(checkLibrary(root, validator).problems, ["There's no sheets folder."]);
     assert.deepEqual(checkLibrary(library({}), validator).problems, ["There are no sheets."]);
+  });
+});
+
+describe("checkGroups", () => {
+  it("accepts a list of names", () => {
+    assert.deepEqual(checkGroups('["Computing", "Geography"]'), { problems: [], groups: ["Computing", "Geography"] });
+  });
+
+  it("refuses text that isn't a list, or an empty list", () => {
+    assert.deepEqual(checkGroups("{ nope").problems, ["isn't valid JSON."]);
+    assert.deepEqual(checkGroups('{"groups": []}').problems, ['must be a list of group names, such as ["Computing", "Geography"].']);
+    assert.deepEqual(checkGroups("[]").problems, ["there are no groups."]);
+  });
+
+  it("refuses an empty name, untidy spaces, and a name listed twice", () => {
+    assert.deepEqual(checkGroups('["Computing", "", 3, " Music", "Computing"]').problems, [
+      "group 2 must be a name with something in it.",
+      "group 3 must be a name with something in it.",
+      'group 4: " Music" has spaces at its start or end.',
+      'group 5: "Computing" is listed twice.'
+    ]);
   });
 });
 
@@ -143,6 +200,11 @@ describe("checkAbout", () => {
   });
 
   it("refuses other fields, so a typing mistake is caught", () => {
-    assert.deepEqual(about({ licence: "CC-BY-4.0", credits: [], licnece: "x" }).problems, ['"licnece" isn\'t allowed. Only "licence" and "credits" are.']);
+    assert.deepEqual(about({ licence: "CC-BY-4.0", credits: [], licnece: "x" }).problems, ['"licnece" isn\'t allowed. Only "group", "licence" and "credits" are.']);
+  });
+
+  it("accepts a group, and doesn't require one, as past versions have none", () => {
+    assert.deepEqual(about({ group: "Hobbies", licence: "CC0-1.0", credits: [] }), { problems: [], about: { group: "Hobbies", licence: "CC0-1.0", credits: [] } });
+    assert.deepEqual(about({ licence: "CC0-1.0", credits: [] }).problems, []);
   });
 });

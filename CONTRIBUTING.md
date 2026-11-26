@@ -19,11 +19,13 @@ Open an issue saying what it should cover, and who it's for. A sheet that covers
 
    ```json
    {
+     "group": "Geography",
      "licence": "CC-BY-4.0",
      "credits": []
    }
    ```
 
+   - `group` is where the sheet is listed on the library page, such as `Computing` or `Geography`. It must be one of the names in [`groups.json`](groups.json). If none fits, add a new name there in the same pull request, and say why in its description. The list holds only the groups in use, so add one only for a sheet that needs it.
    - `licence` is `CC-BY-4.0` unless you choose `CC0-1.0`, to give it away with no conditions, or `CC-BY-SA-4.0`, which you must use if the sheet adapts share-alike material, such as text from Wikipedia. Other licences aren't accepted.
    - `credits` lists anything taken from elsewhere that needs a credit, such as an image: `{ "text": "Flag of Oman: Government of Oman, Open Government Licence – Oman 1.0", "url": "https://…" }`. The `url` is optional.
 5. **Check it:**

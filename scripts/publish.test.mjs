@@ -10,7 +10,7 @@ import { buildIndex, LAYOUT, versionFile, versionOf, writePublished } from "./li
 const hash = (data) => createHash("sha256").update(data).digest("hex");
 
 /** A checked sheet, as checkLibrary returns it. */
-function sheet(id, { description, images, credits = [], licence = "CC-BY-4.0" } = {}) {
+function sheet(id, { description, images, credits = [], licence = "CC-BY-4.0", group = "Hobbies" } = {}) {
   const value = {
     schemaVersion: 1,
     title: `Title ${id}`,
@@ -22,7 +22,7 @@ function sheet(id, { description, images, credits = [], licence = "CC-BY-4.0" } 
     ]
   };
   const raw = Buffer.from(JSON.stringify(value, null, 2), "utf8");
-  return { id, raw, sheet: value, about: { licence, credits } };
+  return { id, raw, sheet: value, about: { group, licence, credits } };
 }
 
 const folders = [];
@@ -44,6 +44,7 @@ describe("buildIndex", () => {
         bytes: one.raw.length,
         sha256: hash(one.raw),
         version: hash(JSON.stringify({ licence: "CC-BY-4.0", credits: [{ text: "Me" }], sheet: one.sheet })),
+        group: "Hobbies",
         licence: "CC-BY-4.0",
         credits: [{ text: "Me" }]
       }
@@ -72,6 +73,14 @@ describe("buildIndex", () => {
   it("hashes the sheets list, as JSON with no spaces, for libraryHash", () => {
     const index = buildIndex([sheet("knots"), sheet("bends")]);
     assert.equal(index.libraryHash, hash(JSON.stringify(index.sheets)));
+  });
+
+  it("changes libraryHash, but not the version, when a sheet's group changes", () => {
+    const [before] = buildIndex([sheet("knots")]).sheets;
+    const moved = buildIndex([sheet("knots", { group: "Sailing" })]);
+    assert.equal(moved.sheets[0].group, "Sailing");
+    assert.equal(moved.sheets[0].version, before.version);
+    assert.notEqual(moved.libraryHash, buildIndex([sheet("knots")]).libraryHash);
   });
 
   it("changes libraryHash when a sheet, licence or credit changes", () => {

@@ -11,8 +11,11 @@ import { pathToFileURL } from "node:url";
 /** The licences a library sheet may use, by their SPDX names. */
 export const LICENCES = ["CC-BY-4.0", "CC0-1.0", "CC-BY-SA-4.0"];
 
+const ABOUT_FIELDS = ["group", "licence", "credits"];
+
 const SHEET_FILE = "sheet.json";
 const ABOUT_FILE = "about.json";
+const GROUPS_FILE = "groups.json";
 
 /** Loads validate.mjs from a path, or says how to get it. */
 export async function loadValidator(path) {
@@ -31,6 +34,14 @@ export async function loadValidator(path) {
 export function checkLibrary(root, validator) {
   const problems = [];
   const sheets = [];
+  let groups = null;
+  try {
+    const found = checkGroups(readFileSync(join(root, GROUPS_FILE), "utf8"));
+    for (const problem of found.problems) problems.push(`${GROUPS_FILE}: ${problem}`);
+    groups = found.groups ?? null;
+  } catch {
+    problems.push(`${GROUPS_FILE} is missing. It lists the library's groups.`);
+  }
   const folder = join(root, "sheets");
   let names;
   try {
@@ -83,6 +94,10 @@ export function checkLibrary(root, validator) {
       const found = checkAbout(readFileSync(join(folder, id, ABOUT_FILE), "utf8"));
       for (const problem of found.problems) problems.push(`${place}/${ABOUT_FILE}: ${problem}`);
       about = found.about;
+      if (about) {
+        const problem = groupProblem(about.group, groups);
+        if (problem) problems.push(`${place}/${ABOUT_FILE}: ${problem}`);
+      }
     }
 
     if (problems.length === before) sheets.push({ id, raw, sheet, about });
@@ -91,7 +106,48 @@ export function checkLibrary(root, validator) {
   return { problems, sheets };
 }
 
-/** Checks an about.json's text: its licence and credits, and nothing else. */
+/**
+ * Checks groups.json's text: a list of group names, each with something in
+ * it, and none twice. Returns the problems, and the names if there are none.
+ */
+export function checkGroups(text) {
+  let groups;
+  try {
+    groups = JSON.parse(text);
+  } catch {
+    return { problems: ["isn't valid JSON."] };
+  }
+  if (!Array.isArray(groups)) return { problems: ['must be a list of group names, such as ["Computing", "Geography"].'] };
+  const problems = [];
+  const seen = new Set();
+  groups.forEach((group, index) => {
+    const place = `group ${index + 1}`;
+    if (typeof group !== "string" || group.trim() === "") problems.push(`${place} must be a name with something in it.`);
+    else if (group !== group.trim()) problems.push(`${place}: "${group}" has spaces at its start or end.`);
+    else if (seen.has(group)) problems.push(`${place}: "${group}" is listed twice.`);
+    else seen.add(group);
+  });
+  if (groups.length === 0) problems.push("there are no groups.");
+  return problems.length ? { problems } : { problems, groups };
+}
+
+/**
+ * Why a sheet's group isn't allowed, or null if it is. With no good list of
+ * groups, only its presence is checked, as groups.json's own problems say the rest.
+ */
+function groupProblem(group, groups) {
+  const names = groups ? ` Use one of the names in ${GROUPS_FILE}: ${groups.join(", ")}.` : "";
+  if (group === undefined) return `the group is missing.${names}`;
+  if (typeof group !== "string" || group.trim() === "") return `the group must be a name with something in it.${names}`;
+  if (groups && !groups.includes(group)) return `the group "${group}" isn't in ${GROUPS_FILE}.${names} A sheet that needs a new group adds it there.`;
+  return null;
+}
+
+/**
+ * Checks an about.json's text: its group, licence and credits, and nothing
+ * else. The group isn't required here, as past versions read from the history
+ * have none. checkLibrary requires it of today's sheets.
+ */
 export function checkAbout(text) {
   const problems = [];
   let about;
@@ -103,7 +159,7 @@ export function checkAbout(text) {
   if (!isObject(about)) return { problems: ["must be a JSON object."] };
 
   for (const field of Object.keys(about)) {
-    if (field !== "licence" && field !== "credits") problems.push(`"${field}" isn't allowed. Only "licence" and "credits" are.`);
+    if (!ABOUT_FIELDS.includes(field)) problems.push(`"${field}" isn't allowed. Only "group", "licence" and "credits" are.`);
   }
   if (!("licence" in about)) problems.push(`the licence is missing. Use one of ${LICENCES.join(", ")}.`);
   else if (!LICENCES.includes(about.licence)) problems.push(`the licence must be one of ${LICENCES.join(", ")}.`);
@@ -152,7 +208,8 @@ export function versionOf(raw, about) {
 /**
  * The index for checked sheets, as spec 18's "The published folder" says.
  * `libraryHash` is the SHA-256 of the sheets list as JSON with no spaces, so
- * a change to any sheet, licence or credit changes it.
+ * a change to any sheet, group, licence or credit changes it. The group isn't
+ * in the version, so moving a sheet doesn't make anyone's copy out of date.
  */
 export function buildIndex(sheets) {
   const list = [...sheets]
@@ -168,6 +225,7 @@ export function buildIndex(sheets) {
       bytes: raw.length,
       sha256: sha256(raw),
       version: versionOf(raw, about),
+      group: about.group,
       licence: about.licence,
       credits: about.credits
     }));
